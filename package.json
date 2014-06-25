@@ -1,18 +1,18 @@
 {
-  "name": "nodebot-workshop",
-  "version": "0.11.1",
-  "description": "A nodeschool workshop on getting your ardunio alive with johnny-five",
-  "main": "nodebot-workshop.js",
+  "name": "lasercat-workshop",
+  "version": "0.1.0",
+  "description": "Cats & Lasers & johnny-five",
+  "main": "lasercat-workshop.js",
   "scripts": {
-    "start": "./nodebot-workshop.js",
+    "start": "node lasercat-workshop.js",
     "test": "gulp"
   },
   "bin": {
-    "nodebot-workshop": "./nodebot-workshop.js"
+    "lasercat-workshop": "./lasercat-workshop.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tableflip/nodebot-workshop"
+    "url": "https://github.com/tableflip/lasercat-workshop"
   },
   "keywords": [
     "nodeschool",
@@ -24,13 +24,14 @@
     "life is not a malfuction"
   ],
   "contributors": [
+    "gorhgorh"
     "olizilla",
-    "_alanshaw",
+    "alanshaw",
     "achingbrain"
   ],
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/tableflip/nodebot-workshop/issues"
+    "url": "https://github.com/tableflip/lasercat-workshop/issues"
   },
   "dependencies": {
     "async": "^0.9.0",
