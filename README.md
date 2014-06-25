@@ -26,7 +26,7 @@ Wire up an Arduino, connect the USB and you can see your solution run for real.
 ## The lasercat turret
 
 1. Power On Self Test - LED + resistor. Ensure everything is working
--  Turn the table - Wire up a servo.
+-  Spin Up - Turn the platter with a servo.
 -  Pan & Tilt - Become master of the horizontal and the vertical.
 -  Fire the Laser - WARNING: May attract cats.
 -  Remote control - Cats over IP.

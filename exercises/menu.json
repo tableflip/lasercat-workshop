@@ -1,7 +1,7 @@
 [
   "Power On Self Test",
-  "Pan",
-  "Tilt",
-  "Laser",
+  "Spin Up",
+  "Pan And Tilt",
+  "Fire The Laser",
   "Remote Control"
 ]
