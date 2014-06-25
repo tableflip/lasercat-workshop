@@ -8,7 +8,7 @@ A step by step guide to building your own internet controllable laser turret and
  npm install -g lasercat-workshop
 ```
 
-![lasercat](http://m.c.lnkd.licdn.com/mpr/mpr/p/5/005/051/009/311f5a8.jpg)
+![lasercat](https://cloud.githubusercontent.com/assets/58871/3391010/aa2240de-fca5-11e3-8015-1f0f54acab33.jpg)
 ---
 
 [johnny-five][2] is a node api for communicating with Arduino boards.
