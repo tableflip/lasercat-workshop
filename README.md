@@ -25,6 +25,20 @@ Wire up an Arduino, connect the USB and you can see your solution run for real.
 
 ## The lasercat turret
 
+Here's what you're going to build.  Amazing, right?
+
+![lasercat](assets/lasercat.jpg)
+
+### Assembly instructions
+
+Watch the handy video below for how to assemble your very own laser cat amuser.
+
+[![instructions](assets/instructions.jpg)](https://vimeo.com/99227967)
+
+(Also [available in this very repo](assembly-instructions.mpg) in case you are offline).
+
+### Coding fun
+
 1. Power On Self Test - LED + resistor. Ensure everything is working
 -  Spin Up - Turn the platter with a servo.
 -  Pan & Tilt - Become master of the horizontal and the vertical.
