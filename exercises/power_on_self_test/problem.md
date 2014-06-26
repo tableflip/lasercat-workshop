@@ -2,7 +2,7 @@
 
 ## Writing the code
 
-1. A directory for your answers and `cd` in to it.
+1. Create a directory for your answers and `cd` into it.
 2. Get johnny-five from npm: `npm install johnny-five`
 3. Add a file for your solution (e.g. 01-power-on-self-test.js)
 
