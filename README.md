@@ -35,7 +35,7 @@ Watch the handy video below for how to assemble your very own laser cat amuser.
 
 [![instructions](assets/instructions.jpg)](https://vimeo.com/99227967)
 
-(Also [available in this very repo](assembly-instructions.mpg) in case you are offline).
+(Also [available in this very repo](assembly-instructions.mp4) in case you are offline).
 
 ### Coding fun
 
