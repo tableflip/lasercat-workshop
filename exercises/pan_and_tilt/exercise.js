@@ -7,6 +7,7 @@ var filecheck = require('workshopper-exercise/filecheck')
 var execute = require('workshopper-exercise/execute')
 var wrappedexec = require('workshopper-wrappedexec')
 var path = require('path')
+var hardwareFinder = require('../../lib/hardware-finder')
 
 // checks that the submission file actually exists
 exercise = filecheck(exercise)
@@ -44,23 +45,37 @@ exercise.addVerifyProcessor(function (callback) {
     }
 
     var board = five.Board.instances[0]
-    var servo = five.Servo.instances[0]
+    var panServo = hardwareFinder(five, 'Servo', 9)
+    var tiltServo = hardwareFinder(five, 'Servo', 10)
 
-    expect(servo, 'no servo instance created').to.exist
-    expect(servo.pin, 'servo expected to be connected to pin 9').to.equal(9)
+    expect(panServo, 'pan servo expected to be connected to pin 9').to.exist
+    expect(tiltServo, 'tilt servo expected to be connected to pin 10').to.exist
 
-    expect(servo.sweep.calledOnce, 'servo did not sweep').to.be.true
+    expect(panServo.sweep.calledOnce, 'pan servo did not sweep').to.be.true
+    expect(panServo.stop.calledOnce, 'pan servo did not stop before moving to expected angle').to.be.true
+
+    expect(tiltServo.sweep.calledOnce, 'tilt servo did not sweep').to.be.true
+    expect(tiltServo.stop.calledOnce, 'tilt servo did not stop before moving to expected angle').to.be.true
+
     expect(board.wait.calledOnce, 'board.wait was not used').to.be.true
-    expect(servo.stop.calledOnce, 'servo did not stop before moving to expected angle').to.be.true
 
-    var wait0 = board.wait.getCall(0)
-    var stop0 = servo.stop.getCall(0)
-    var toLast = servo.to.getCall(servo.to.callCount - 1)
+    var boardWait = board.wait.getCall(0)
 
-    expect(wait0.calledBefore(stop0), 'servo unexpectedly stopped before waiting').to.be.true
-    expect(wait0.args[0], 'servo did not wait for expected time').to.equal(3000)
-    expect(stop0.calledBefore(toLast), 'servo did not stop before returning to center').to.be.true
-    expect(toLast.args[0], 'servo did not return to center').to.equal(90)
+    var panServoStop = panServo.stop.getCall(0)
+    var panToLast = panServo.to.getCall(panServo.to.callCount - 1)
+
+    var tiltServoStop = tiltServo.stop.getCall(0)
+    var tiltToLast = tiltServo.to.getCall(tiltServo.to.callCount - 1)
+
+    expect(boardWait.calledBefore(panServoStop), 'pan servo unexpectedly stopped before waiting').to.be.true
+    expect(boardWait.calledBefore(tiltServoStop), 'tilt servo unexpectedly stopped before waiting').to.be.true
+    expect(boardWait.args[0], 'board did not wait for expected time').to.equal(3000)
+
+    expect(panServoStop.calledBefore(panToLast), 'pan servo did not stop before returning to center').to.be.true
+    expect(panToLast.args[0], 'pan servo did not return to center').to.equal(90)
+
+    expect(tiltServoStop.calledBefore(tiltToLast), 'tilt servo did not stop before returning to center').to.be.true
+    expect(tiltToLast.args[0], 'tilt servo did not return to center').to.equal(90)
 
     callback(null, true)
   } catch(e) {

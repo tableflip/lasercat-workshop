@@ -1,4 +1,4 @@
-__Temperature near you as a service.__
+# Remote control
 
 Use dnode to create an rpc server that allows anyone to query the last known
 temperature of a TMP36 temperature sensor.

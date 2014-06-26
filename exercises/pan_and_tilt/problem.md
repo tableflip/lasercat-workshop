@@ -1,47 +1,42 @@
-__Make a servo wave at you for 3 seconds, stop, and return to center.__
+Make a servo wave at you for three seconds, stop, and return to center
 
-- Create a new `Servo` instance attached to pin 9.
-- Use `servo.sweep` to rotate between 0˚ and 180˚.
-- Use `board.wait` to schedule a 'reset' callback.
-- The 'reset' callback should `stop` and `center` the servo.
-- Check the docs to see how to bring it back into line.
-
-## Boilerplate
-```js
-  var five = require('johnny-five')
-  var board = new five.Board()
-  board.on('ready', function () {
-
-    // Your solution here!
-
-  })
-```
+1. Start with a copy the js file you made for the previous exercise, we'll build on it here.
+2. Ensure that the pan servo in the base of the cat amuser is attached to pin 9
+2. Create a second `Servo` for tilting (e.g. the servo in the vertical column of the cat amuser) attached to pin 10
+3. Use `servo.sweep` to rotate both servos between 0˚ and 180˚.
+4. Use `board.wait` to schedule a 'reset' callback after three seconds.
+5. The 'reset' callback should `stop` and `center` both servos.
+6. Check the docs to see how to bring it back into line.
 
 ## Circuit diagram
 
 ```
-        Servo
-        .---.
-        | | |
-      -===+===-
-        | | |
-        |   |
-        '---'
-        | | |
-        | | |
-GND  o--. | .--o  Pin 9
-          |
- +5  o----.
-
+        Servo                 Servo
+        .---.                 .---.
+        | | |                 | | |
+      -===+===-             -===+===-
+        | | |                 | | |
+        |   |                 |   |
+        '---'                 '---'
+        | | |                 | | |
+        | | |                 | | |
+        | | '--o Pin 9        | | '--o Pin 10
+        | |                   / |
+        | '-------------o----|--'
+        |                \    \
+        '------o----------|----'
+               |         /
+               o GND    |
+                        o  +5v
 ```
 
 ## Components
+
 - Servo - http://node-ardx.org/electronics-primer#servo
 
 > Takes a timed pulse and converts it into an angular position of the output shaft.
 
-## Docs
+## Johnny-Five docs
+
 - Servo - https://github.com/rwaldron/johnny-five/wiki/Servo#api
 - Board - https://github.com/rwaldron/johnny-five/wiki/Board#api
-
----

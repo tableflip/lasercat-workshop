@@ -7,6 +7,7 @@ var filecheck = require('workshopper-exercise/filecheck')
 var execute = require('workshopper-exercise/execute')
 var wrappedexec = require('workshopper-wrappedexec')
 var path = require('path')
+var hardwareFinder = require('../../lib/hardware-finder')
 
 // checks that the submission file actually exists
 exercise = filecheck(exercise)
@@ -43,10 +44,9 @@ exercise.addVerifyProcessor(function (callback) {
       return callback(null, false)
     }
 
-    var led = five.Led.instances[0]
+    var led = hardwareFinder(five, 'Led', 13)
 
-    expect(led, 'no led instance created').to.exist
-    expect(led.pin, 'led expected to be connected to pin 13').to.equal(13)
+    expect(led, 'led expected to be connected to pin 13').to.exist
 
     // should have set pin 13 into digital output mode
     expect(io.pinMode.calledWith(13, io.MODES.OUTPUT)).to.be.true
