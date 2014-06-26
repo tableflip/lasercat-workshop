@@ -30,7 +30,7 @@ exercise.addProcessor(function (mode, callback) {
   // need a better way of detecting when we are done..
   setTimeout(function() {
     callback(null)
-  }, 4000)
+  }, 1000)
 })
 
 // add a processor only for 'verify' calls
@@ -46,17 +46,13 @@ exercise.addVerifyProcessor(function (callback) {
     var led = five.Led.instances[0]
 
     expect(led, 'no led instance created').to.exist
-
     expect(led.pin, 'led expected to be connected to pin 13').to.equal(13)
-    expect(led.strobe.called, 'led.strobe was not called').to.be.true
-    expect(led.strobe.getCall(0).args[0], 'led.strobe was not called with 1000').to.equal(1000)
 
     // should have set pin 13 into digital output mode
     expect(io.pinMode.calledWith(13, io.MODES.OUTPUT)).to.be.true
 
-    // should have turned pin 13 on and off
+    // should have turned pin 13 on
     expect(io.digitalWrite.calledWith(13, io.HIGH)).to.be.true
-    expect(io.digitalWrite.calledWith(13, io.LOW)).to.be.true
 
     callback(null, true)
   } catch(e) {
