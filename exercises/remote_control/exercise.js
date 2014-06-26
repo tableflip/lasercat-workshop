@@ -1,14 +1,29 @@
+var sinon = require('sinon')
 var proxyquire = require('proxyquire')
 var five = require('../../stubs/five')
 var async = require('async')
-var dnode = require('dnode')
 var expect = require('chai').expect
+
+var server = require('http').createServer()
+server.listen = sinon.stub()
+var http = {
+  createServer: function() {
+    return server
+  }
+}
+
+var socket = require('socket.io')(server)
+sinon.spy(socket, 'on')
+var sio = function(server) {
+  return socket
+}
 
 var exercise = require('workshopper-exercise')()
 var filecheck = require('workshopper-exercise/filecheck')
 var execute = require('workshopper-exercise/execute')
 var wrappedexec = require('workshopper-wrappedexec')
 var path = require('path')
+var hardwareFinder = require('../../lib/hardware-finder')
 
 // checks that the submission file actually exists
 exercise = filecheck(exercise)
@@ -23,7 +38,11 @@ exercise = wrappedexec(exercise)
 // this actually runs the solution
 exercise.addProcessor(function (mode, callback) {
   // includes the solution to run it
-  proxyquire(path.join(process.cwd(), exercise.args[0]), {'johnny-five': five})
+  proxyquire(path.join(process.cwd(), exercise.args[0]), {
+    'johnny-five': five.spyOn('Led', 'Board', 'Servo'),
+    'http': http,
+    'socket.io': sio
+  })
 
   setTimeout(function() {
     console.log('Please wait while your solution is tested...')
@@ -32,7 +51,7 @@ exercise.addProcessor(function (mode, callback) {
   // need a better way of detecting when we are done..
   setTimeout(function() {
     callback(null)
-  }, 2000)
+  }, 1000)
 })
 
 // add a processor only for 'verify' calls
@@ -45,62 +64,53 @@ exercise.addVerifyProcessor(function (callback) {
       return callback(null, false)
     }
 
-    // Get the listener that is listening for reads on pin A0
-    var analogReadListener = null
+    // should have started the server
+    expect(server.listen.calledOnce, 'server.listen was never called').to.be.true
+    expect(server.listen.getCall(0).args[0], 'server.listen was passed the wrong port').to.equal(9582)
 
-    for (var i = 0; i < io.analogRead.callCount; i++) {
-      var call = io.analogRead.getCall(i)
-      if (call.args[0] === 0) {
-        analogReadListener = call.args[1]
-        break
-      }
+    var client = {
+      on: sinon.stub()
     }
 
-    expect(analogReadListener, 'No values were read from A0').to.not.be.null
+    // simulate connection
+    socket.emit('connection', client)
 
-    var temps = [1,1,1,1,1].map(function () {
-      return random(133, 163) // Between ~ 15 deg and 30 deg
-    })
+    // should have registered listeners
+    expect(client.on.callCount).to.equal(2, 'listeners should be registered for x and y events')
 
-    var d = dnode.connect(1337)
+    var xListener, yListener
 
-    d.on('remote', function (remote) {
-      if (!remote.getTemperature) {
-        return callback(new Error('Remote has no method \'getTemperature\''), false)
-      }
+    if(client.on.getCall(0).args[0] == 'x') {
+      expect(client.on.getCall(1).args[0]).to.equal('y', 'listeners should be registered for x and y events')
 
-      async.eachSeries(
-        temps,
-        function (val, cb) {
-          // Read with this value
-          analogReadListener(val)
+      xListener = client.on.getCall(0).args[1]
+      yListener = client.on.getCall(1).args[1]
+    } else if(client.on.getCall(0).args[0] == 'y') {
+      expect(client.on.getCall(1).args[0]).to.equal('x', 'listeners should be registered for x and y events')
 
-          // Wait for the sensor to receive the value
-          setTimeout(function () {
-            remote.getTemperature(function (actualTemp) {
-              try {
-                var expectedTemp = ((val * 0.004882814) - 0.5) * 100
+      yListener = client.on.getCall(0).args[1]
+      xListener = client.on.getCall(1).args[1]
+    } else {
+      throw 'listeners should be registered for x and y events'
+    }
 
-                // +/- 1 degree is ok
-                expect(actualTemp, 'didn\'t receive expected temperature').to.be.closeTo(expectedTemp, 1)
+    // simulate "x" event
+    xListener(5)
 
-                cb()
-              } catch (er) {
-                cb(er)
-              }
-            })
-          }, 1000)
-        },
-        function (er) {
-          if (er) return callback(er, false)
-          callback(null, true)
-        })
-    })
+    var panServo = hardwareFinder(five, 'Servo', 9)
+    expect(panServo, 'pan servo expected to be connected to pin 9').to.exist
+    expect(panServo.to.callCount, 'pan servo.to was not used').to.equal(1)
+    expect(panServo.to.getCall(0).args[0], 'pan servo.to was not used').to.equal(5)
 
-    d.on('error', function (er) {
-      callback(er, false)
-    })
+    // simulate "y" event
+    yListener(15)
 
+    var tiltServo = hardwareFinder(five, 'Servo', 10)
+    expect(tiltServo, 'tilt servo expected to be connected to pin 9').to.exist
+    expect(tiltServo.to.callCount, 'tilt servo.to was not used').to.equal(1)
+    expect(tiltServo.to.getCall(0).args[0], 'tilt servo.to was not used').to.equal(15)
+
+    callback(null, true)
   } catch (e) {
     callback(e, false)
   }

@@ -1,44 +1,13 @@
-# Remote control
+1. Open a http server listening on port 9582
+2. Use `socket.io` to listen for "connection" events via the http server
+3. When a "connection" event is received, the first argument will be an `EventEmitter` - set up handlers for "x" and "y" events emitted by the client
+4. When an "x" or "y" event is received, the laser should be turned on for 500ms and the first argument written to the pan (x) or tilt (y) servo
 
-Use dnode to create an rpc server that allows anyone to query the last known
-temperature of a TMP36 temperature sensor.
+## Hints
 
-* Attach temperature sensor to **A0**.
-* Install dnode `npm install dnode`.
-* Setup your dnode server to listen on port 1337.
-* Your rpc endpoint should expose a function called `getTemperature`.
-* `getTemperature` should callback with the temperature in **celsius**.
-
-## Circuit diagram
-
-```
- +5  o-----.
-           |
-           |
-          __
-         |   \
- A0  o---|    ) TMP36
-         |__ /
-           |
-           |
-GND  o-----'
-```
-
-## Components
-
-- TMP36 - http://node-ardx.org/electronics-primer#tempsensor
-
-> Produces a variable resistance dependant on the ambient temperature.
-
-## Hints
-
-- Remember, you're always working with voltages on pins.
-- The value from a sensor is a representation of the voltage on that pin.
-- You'll need to convert that value into a useful temperature reading...
-- To create an enpoint, pass dnode an object with your endpoint as a method.
-- Your endpoint should take a callback and pass the value to it.
+* To open an http server, use the http module
 
 ## Docs
 
-- https://github.com/rwaldron/johnny-five/blob/master/docs/sensor-temperature-tmp36.md
-- dnode - https://github.com/substack/dnode
+- http - http://nodejs.org/api/http.html
+- socket.io - http://socket.io
