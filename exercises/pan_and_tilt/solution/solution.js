@@ -2,12 +2,15 @@ var five = require('johnny-five')
 var board = new five.Board()
 
 board.on('ready', function () {
-  var servo = new five.Servo(9)
+  var led = new five.Led(13)
+  var servoX = new five.Servo(9)
+  var servoY = new five.Servo(7)
 
-  servo.sweep()
+  led.on()
 
-  board.wait(3000, function () {
-    servo.stop()
-    servo.center()
+  this.repl.inject({
+    led: led,
+    x: servoX,
+    y: servoY
   })
 })

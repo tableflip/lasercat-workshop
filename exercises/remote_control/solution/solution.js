@@ -1,26 +1,22 @@
-var five = require('johnny-five')
 var dnode = require('dnode')
-
+var five = require('johnny-five')
 var board = new five.Board()
 
-board.on('ready', function () {
-  var sensor = new five.Sensor('A0')
-  var temp = null
 
-  sensor.on('data', function () {
-    // Convert to celsius (TMP36)
-    temp = ((this.value * 0.004882814) - 0.5) * 100
-  })
+board.on('ready', function () {
+  var led = new five.Led(13)
+  var servoX = new five.Servo(9)
+  var servoY = new five.Servo(7)
+  var laser = new five.Led(5)
+
+  led.on()
 
   var server = dnode({
-    getTemperature: function (cb) {
-      cb(temp)
-    }
+    led: led,
+    x: servoX,
+    y: servoY,
+    laser: laser
   })
 
   server.listen(1337)
 })
-
-
-
-
