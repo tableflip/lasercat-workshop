@@ -61,7 +61,7 @@ exercise.addVerifyProcessor(function (callback) {
 
     expect(laser, 'laser expected to be connected to pin 11').to.exist
     expect(laser.strobe.called, 'led.strobe was not called').to.be.true
-    expect(laser.strobe.getCall(0).args[0], 'led.strobe was not called with 1000').to.equal(1000)
+    expect(laser.strobe.getCall(0).args[0], 'led.strobe was not called with 25').to.equal(25)
 
     expect(panServo, 'pan servo expected to be connected to pin 9').to.exist
     expect(panServo.sweep.calledOnce, 'pan servo did not sweep').to.be.true
