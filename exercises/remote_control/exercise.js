@@ -25,6 +25,15 @@ var wrappedexec = require('workshopper-wrappedexec')
 var path = require('path')
 var hardwareFinder = require('../../lib/hardware-finder')
 
+var notifier = {
+  notify: function() {}
+}
+
+try {
+  var Notification = require('node-notifier');
+  notifier = new Notification();
+} catch(e) {}
+
 // checks that the submission file actually exists
 exercise = filecheck(exercise)
 
@@ -56,6 +65,8 @@ exercise.addProcessor(function (mode, callback) {
 
 // add a processor only for 'verify' calls
 exercise.addVerifyProcessor(function (callback) {
+  var result, error
+
   try {
     var io = five.stubs.firmata.singleton
 
@@ -110,10 +121,25 @@ exercise.addVerifyProcessor(function (callback) {
     expect(tiltServo.to.callCount, 'tilt servo.to was not used').to.equal(1)
     expect(tiltServo.to.getCall(0).args[0], 'tilt servo.to was not used').to.equal(15)
 
-    callback(null, true)
-  } catch (e) {
-    callback(e, false)
+    result = true
+  } catch(e) {
+    result = false
+    error = e
   }
+
+  try {
+    notifier.notify({
+        title: 'lasercat-workshop',
+        message: 'Remote control ' + (result ? 'passed :)' : 'failed :('),
+        appIcon: __dirname + '/../../assets/nodebots.png',
+        contentImage: __dirname + '/../../assets/' + (result ? 'happy' : 'sad') + '_cat5.jpg'
+    })
+  } catch(e) {}
+
+  // needs enough time to show the notification
+  setTimeout(function() {
+    callback(error, result)
+  }, 1000)
 })
 
 function random (min, max) {

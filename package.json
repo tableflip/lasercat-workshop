@@ -1,6 +1,6 @@
 {
   "name": "lasercat-workshop",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Cats & Lasers & johnny-five",
   "main": "lasercat-workshop.js",
   "scripts": {
@@ -44,6 +44,9 @@
     "workshopper-exercise": "~0.2.3",
     "workshopper-wrappedexec": "~0.1.1",
     "socket.io": "^1.0.2"
+  },
+  "optionalDependencies": {
+    "node-notifier": "^3.0"
   },
   "devDependencies": {
     "gulp-jshint": "^1.6.1",

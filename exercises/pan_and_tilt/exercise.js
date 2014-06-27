@@ -9,6 +9,15 @@ var wrappedexec = require('workshopper-wrappedexec')
 var path = require('path')
 var hardwareFinder = require('../../lib/hardware-finder')
 
+var notifier = {
+  notify: function() {}
+}
+
+try {
+  var Notification = require('node-notifier');
+  notifier = new Notification();
+} catch(e) {}
+
 // checks that the submission file actually exists
 exercise = filecheck(exercise)
 
@@ -36,6 +45,8 @@ exercise.addProcessor(function (mode, callback) {
 
 // add a processor only for 'verify' calls
 exercise.addVerifyProcessor(function (callback) {
+  var result, error
+
   try {
     var io = five.stubs.firmata.singleton
 
@@ -77,10 +88,25 @@ exercise.addVerifyProcessor(function (callback) {
     expect(tiltServoStop.calledBefore(tiltToLast), 'tilt servo did not stop before returning to center').to.be.true
     expect(tiltToLast.args[0], 'tilt servo did not return to center').to.equal(90)
 
-    callback(null, true)
+    result = true
   } catch(e) {
-    callback(e, false)
+    result = false
+    error = e
   }
+
+  try {
+    notifier.notify({
+        title: 'lasercat-workshop',
+        message: 'Pan and tilt ' + (result ? 'passed :)' : 'failed :('),
+        appIcon: __dirname + '/../../assets/nodebots.png',
+        contentImage: __dirname + '/../../assets/' + (result ? 'happy' : 'sad') + '_cat3.jpg'
+    })
+  } catch(e) {}
+
+  // needs enough time to show the notification
+  setTimeout(function() {
+    callback(error, result)
+  }, 1000)
 })
 
 module.exports = exercise
