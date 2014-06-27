@@ -27,13 +27,13 @@ Wire up an Arduino, connect the USB and you can see your solution run for real.
 
 Here's what you're going to build.  Amazing, right?
 
-![lasercat](assets/lasercat.jpg)
+![lasercat](https://raw.githubusercontent.com/tableflip/lasercat-workshop/master/assets/lasercat.jpg)
 
 ### Assembly instructions
 
 Watch the handy video below for how to assemble your very own laser cat amuser.
 
-[![instructions](assets/instructions.jpg)](https://vimeo.com/99227967)
+[![instructions](https://raw.githubusercontent.com/tableflip/lasercat-workshop/master/assets/instructions.jpg)](https://vimeo.com/99227967)
 
 (Also [available in this very repo](assembly-instructions.mp4) in case you are offline).
 
