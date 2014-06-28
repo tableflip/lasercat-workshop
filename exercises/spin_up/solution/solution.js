@@ -7,7 +7,7 @@ board.on('ready', function () {
 
   this.repl.inject({
     status: status,
-    pan: servoX
+    pan: pan
   })
 
   status.on()
