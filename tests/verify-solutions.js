@@ -13,7 +13,7 @@
  * Test all the exercises defined in `menu.json` have valid solutions. Run them in series, in a child process.
  *
  */
-const workshopper = require('workshopper')
+const workshopper = require('tableflip-workshopper')
   , spawn       = require('child_process').spawn
   , async       = require('async')
   , path        = require('path')
