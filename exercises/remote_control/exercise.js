@@ -1,7 +1,6 @@
 var sinon = require('sinon')
 var proxyquire = require('proxyquire')
 var five = require('../../stubs/five')
-var async = require('async')
 var expect = require('chai').expect
 
 var server = require('http').createServer()
@@ -14,7 +13,7 @@ var http = {
 
 var socket = require('socket.io')(server)
 sinon.spy(socket, 'on')
-var sio = function(server) {
+var sio = function() {
   return socket
 }
 
@@ -141,9 +140,5 @@ exercise.addVerifyProcessor(function (callback) {
     callback(error, result)
   }, 1000)
 })
-
-function random (min, max) {
-  return Math.random() * (max - min + 1) + min
-}
 
 module.exports = exercise
