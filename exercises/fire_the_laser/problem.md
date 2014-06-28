@@ -1,7 +1,7 @@
 1. Start with a copy the js file you made for the previous exercise, we'll build on it here.
 2. Create a new `Led` instance attached to digital pin 11.
 3. Expose the Led instance in the repl so you can control it from the command line
-4. Use `Led.strobe` with a duration of 50ms
+4. Use `Led.strobe` with a duration of 500ms
 5. Use `Servo.sweep` to pan the servo from left to right
 6. After three seconds turn the Led off, stop and center the servo using `Servo.stop` and `Servo.center`
 

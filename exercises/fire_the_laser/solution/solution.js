@@ -16,7 +16,7 @@ board.on('ready', function () {
 
   status.on()
   pan.sweep()
-  laser.strobe(1000)
+  laser.strobe(500)
 
   board.wait(3000, function() {
     laser.off()
