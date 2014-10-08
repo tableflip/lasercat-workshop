@@ -1,4 +1,5 @@
 # lasercat workshop [![Build Status](https://travis-ci.org/tableflip/lasercat-workshop.svg?branch=master)](https://travis-ci.org/tableflip/lasercat-workshop) [![Dependency Status](https://david-dm.org/tableflip/lasercat-workshop.svg)](https://david-dm.org/tableflip/lasercat-workshop)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/tableflip/lasercat-workshop?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 **Cats & Lasers & [johnny-five][2]**
 
