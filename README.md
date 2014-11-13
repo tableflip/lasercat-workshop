@@ -8,6 +8,8 @@ A step by step guide to building your own internet controllable laser turret and
  npm install -g lasercat-workshop
 ```
 
+[Fun is guaranteed...](https://storify.com/gorhgorh/lxjs-catbot)
+
 ![lasercat](https://cloud.githubusercontent.com/assets/58871/3391010/aa2240de-fca5-11e3-8015-1f0f54acab33.jpg)
 ---
 
@@ -72,7 +74,7 @@ Built by robots and:
 - [Jérome "lasers" Loï](https://twitter.com/gorhgorh)
 - [@Nodebots of London](http://www.meetup.com/NodeBots-of-London)
 
-Made with <3 for [LXJS 2014](http://2014.lxjs.org/)
+Made with <3 and lasers for [LXJS 2014](http://2014.lxjs.org/)
 
 [1]: http://nodeschool.io/
 [2]: https://github.com/rwaldron/johnny-five
