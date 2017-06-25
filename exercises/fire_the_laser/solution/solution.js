@@ -2,9 +2,9 @@ var five = require('johnny-five')
 var board = new five.Board()
 
 board.on('ready', function () {
-  var pan = new five.Servo(9)
-  var tilt = new five.Servo(10)
-  var laser = new five.Led(11)
+  var pan = new five.Servo(10)
+  var tilt = new five.Servo(11)
+  var laser = new five.Led(12)
 
   board.repl.inject({
     pan: pan,

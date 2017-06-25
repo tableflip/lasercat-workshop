@@ -107,16 +107,16 @@ exercise.addVerifyProcessor(function (callback) {
     // simulate "x" event
     xListener(5)
 
-    var panServo = hardwareFinder(five, 'Servo', 9)
-    expect(panServo, 'pan servo expected to be connected to pin 9').to.exist
+    var panServo = hardwareFinder(five, 'Servo', 10)
+    expect(panServo, 'pan servo expected to be connected to pin 10').to.exist
     expect(panServo.to.callCount, 'pan servo.to was not used').to.equal(1)
     expect(panServo.to.getCall(0).args[0], 'pan servo.to was not used').to.equal(5)
 
     // simulate "y" event
     yListener(15)
 
-    var tiltServo = hardwareFinder(five, 'Servo', 10)
-    expect(tiltServo, 'tilt servo expected to be connected to pin 9').to.exist
+    var tiltServo = hardwareFinder(five, 'Servo', 11)
+    expect(tiltServo, 'tilt servo expected to be connected to pin 11').to.exist
     expect(tiltServo.to.callCount, 'tilt servo.to was not used').to.equal(1)
     expect(tiltServo.to.getCall(0).args[0], 'tilt servo.to was not used').to.equal(15)
 

@@ -56,11 +56,11 @@ exercise.addVerifyProcessor(function (callback) {
     }
 
     var board = five.Board.instances[0]
-    var panServo = hardwareFinder(five, 'Servo', 9)
-    var tiltServo = hardwareFinder(five, 'Servo', 10)
+    var panServo = hardwareFinder(five, 'Servo', 10)
+    var tiltServo = hardwareFinder(five, 'Servo', 11)
 
-    expect(panServo, 'pan servo expected to be connected to pin 9').to.exist
-    expect(tiltServo, 'tilt servo expected to be connected to pin 10').to.exist
+    expect(panServo, 'pan servo expected to be connected to pin 10').to.exist
+    expect(tiltServo, 'tilt servo expected to be connected to pin 11').to.exist
 
     expect(panServo.sweep.calledOnce, 'pan servo did not sweep').to.be.true
     expect(panServo.stop.calledOnce, 'pan servo did not stop before moving to expected angle').to.be.true

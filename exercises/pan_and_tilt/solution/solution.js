@@ -2,8 +2,8 @@ var five = require('johnny-five')
 var board = new five.Board()
 
 board.on('ready', function () {
-  var pan = new five.Servo(9)
-  var tilt = new five.Servo(10)
+  var pan = new five.Servo(10)
+  var tilt = new five.Servo(11)
 
   board.repl.inject({
     pan: pan,

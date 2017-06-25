@@ -1,7 +1,7 @@
 Add a servo to spin the platter.
 
 1. Start with a copy the js file you made for the previous exercise, we'll build on it here.
-2. Create a new `Servo` instance attached to digital pin 9.
+2. Create a new `Servo` instance attached to digital pin 10.
 3. Expose the servo instance in the repl so you can control it from the command line
 4. Move it to 0 degrees using `servo.to`
 5. Use `board.wait` to pause for one second, then move it to 180 degrees
@@ -10,7 +10,7 @@ Add a servo to spin the platter.
 ## Circuit diagram
 
 ```
-                           .----o Pin 9
+                           .----o Pin 10
             Servo          |
        .--|---------.------'
      -====+====-    |-----------o +5v
@@ -21,7 +21,7 @@ Add a servo to spin the platter.
 
 ## Hints
 
- * Your ITeaduino has a switch to change the voltage of all pins between 5v and 3.3v - 3.3v is not enough to power a servo so ensure it's set to 5v
+ * Your funduino has a switch to change the voltage of all pins between 5v and 3.3v - 3.3v is not enough to power a servo so ensure it's set to 5v
  * The servos in the kit have the following wires:
   * Brown - Ground
   * Orange - Power
