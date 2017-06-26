@@ -26,7 +26,7 @@ is required other than the Arduino itself and a USB cable.
 
 ## Hints
 
- * Your kit includes an Arudino-compatible ITeaduino board.  Attach this to your computer using the included USB cable.
+ * Your kit includes an Arudino-compatible funduino board.  Attach this to your computer using the included USB cable.
  * You will need to install the StandardFirmata sketch from the Arduino IDE before Johnny-Five can talk to it.
 
 ## Components

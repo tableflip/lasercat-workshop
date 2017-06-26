@@ -56,9 +56,9 @@ exercise.addVerifyProcessor(function (callback) {
     }
 
     var board = five.Board.instances[0]
-    var servo = hardwareFinder(five, 'Servo', 9)
+    var servo = hardwareFinder(five, 'Servo', 10)
 
-    expect(servo, 'servo expected to be connected to pin 9').to.exist
+    expect(servo, 'servo expected to be connected to pin 10').to.exist
     expect(servo.to.callCount, 'servo.to was not used').to.equal(3)
     expect(board.wait.calledTwice, 'board.wait was not used').to.be.true
 

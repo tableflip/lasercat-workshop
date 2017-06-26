@@ -1,5 +1,5 @@
 1. Start with a copy the js file you made for the previous exercise, we'll build on it here.
-2. Create a new `Led` instance attached to digital pin 11.
+2. Create a new `Led` instance attached to digital pin 12.
 3. Expose the Led instance in the repl so you can control it from the command line
 4. Use `Led.strobe` with a duration of 500ms
 5. Use `Servo.sweep` to pan the servo from left to right
@@ -8,7 +8,7 @@
 ## Circuit diagram
 
 ```
-                                      .----o Pin 11
+                                      .----o Pin 12
                                       |
       Pew pew!      +----------+------'
 -- -- -- -- -- -- --|  LASER!  |
@@ -19,7 +19,7 @@
 
 ## Hints
 
-* Your ITeaduino has a switch to change the voltage of all pins between 5v and 3.3v - 3.3v is not sufficient to power a servo so ensure it's set to 5v
+* Your funduino has a switch to change the voltage of all pins between 5v and 3.3v - 3.3v is not sufficient to power a servo so ensure it's set to 5v
 * To power the servos reliably you will need to use the included power adapter to add extra juice to your Arduino
 * The servos in the kit have the following wires:
  * Brown - Ground

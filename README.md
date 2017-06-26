@@ -33,15 +33,11 @@ Here's what you're going to build.  Amazing, right?
 
 ### Assembly instructions
 
-Watch the handy video below for how to assemble your very own laser cat amuser.
-
-[![instructions](https://raw.githubusercontent.com/tableflip/lasercat-workshop/master/assets/instructions.jpg)](https://vimeo.com/99227967)
-
-(Also [available in this very repo](assembly-instructions.mp4) in case you are offline).
+Follow the build instruction [here](https://catsandsolenoids.eu/catbot/v4/)
 
 ### Coding fun
 
-1. Power On Self Test - LED + resistor. Ensure everything is working
+1. Power On Self Test - LED. Ensure everything is working
 -  Spin Up - Turn the platter with a servo.
 -  Pan & Tilt - Become master of the horizontal and the vertical.
 -  Fire the Laser - WARNING: May attract cats.
@@ -71,7 +67,7 @@ Watch the handy video below for how to assemble your very own laser cat amuser.
 </a>
 
 Built by robots and:
-- [Jérome "lasers" Loï](https://twitter.com/gorhgorh)
+- [Cats and solenoids](https://catsandsolenoids.eu/)
 - [@Nodebots of London](http://www.meetup.com/NodeBots-of-London)
 
 Made with <3 and lasers for [LXJS 2014](http://2014.lxjs.org/)
