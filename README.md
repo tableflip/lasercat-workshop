@@ -38,10 +38,10 @@ Follow the build instruction [here](https://catsandsolenoids.eu/catbot/v4/)
 ### Coding fun
 
 1. Power On Self Test - LED. Ensure everything is working
--  Spin Up - Turn the platter with a servo.
--  Pan & Tilt - Become master of the horizontal and the vertical.
--  Fire the Laser - WARNING: May attract cats.
--  Remote control - Cats over IP.
+2.  Spin Up - Turn the platter with a servo.
+3.  Pan & Tilt - Become master of the horizontal and the vertical.
+4.  Fire the Laser - WARNING: May attract cats.
+5.  Remote control - Cats over IP.
 
 ```
            \`*-.
